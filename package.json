@@ -1,0 +1,37 @@
+{
+  "name": "named-web-colors",
+  "version": "0.1.0",
+  "description": "Utility to translate HEX color codes into more human friendly color names",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "ava lib/test.js",
+    "dev": "watch 'npm run build' src",
+    "build": "babel src -d lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidfq/named-web-colors.git"
+  },
+  "keywords": [
+    "colors",
+    "CSS colors",
+    "color names",
+    "web colors"
+  ],
+  "author": "@davidfq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidfq/named-web-colors/issues"
+  },
+  "homepage": "https://github.com/davidfq/named-web-colors",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "ava": "^1.3.1",
+    "watch": "^1.0.2"
+  },
+  "dependencies": {
+    "color-string": "^1.5.3"
+  }
+}
