@@ -6,7 +6,7 @@
   "scripts": {
     "test": "ava lib/test.js",
     "dev": "watch 'npm run build' src",
-    "build": "babel src -d lib"
+    "build": "standard && babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "ava": "^1.3.1",
+    "standard": "^12.0.1",
     "watch": "^1.0.2"
   },
   "dependencies": {

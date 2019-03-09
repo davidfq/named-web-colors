@@ -25,7 +25,7 @@ const white = colorString.get('#fff')
 const black = colorString.get('#000')
 const MAX_DISTANCE = euclideanDistance(white.value, black.value)
 
-export default function getColorName(colorCode) {
+export default function getColorName (colorCode) {
   const inputColor = colorString.get(colorCode)
   let distance = MAX_DISTANCE
   let colorMatch = {}

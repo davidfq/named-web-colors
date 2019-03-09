@@ -1,10 +1,9 @@
 import test from 'ava'
 import getColorName from './index'
-import colorString from 'color-string'
 
 test('it doesn\'t break because of parsing errors', t => {
   t.is(getColorName('#'), '')
-  t.is(getColorName('test'), '')  
+  t.is(getColorName('test'), '')
 })
 
 test('web color matches', t => {
@@ -22,4 +21,3 @@ test('Exact matches vs. variations', t => {
 test('not only HEX supported', t => {
   t.is(getColorName('rgb(13,17,23)'), 'Bunker')
 })
-
