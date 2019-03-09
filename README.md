@@ -1,6 +1,6 @@
 # Named Web colors
 
-Heavily inspired by [Name that color Javasript](http://chir.ag/projects/ntc/).
+Heavily inspired by [Name that color JavaScript](http://chir.ag/projects/ntc/).
 
 Utility to translate HEX color codes into more human friendly color names. It uses a simple Euclidean distance algorithm to find the closest color among approximately 1,567 references (CSS4 web colors included).
 
