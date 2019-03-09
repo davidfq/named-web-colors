@@ -31,7 +31,7 @@ const MAX_DISTANCE = euclideanDistance(white.value, black.value)
  * @return {string}
  */
 const slugify = (string = '', separator = '-') => {
-  return _.reduce(string.split(''), (memo, char) => {
+  return _.reduce(string.trim().split(''), (memo, char) => {
     return memo + char.replace(/'/, '').replace(/\s/, separator)
   }, '').toLocaleLowerCase()
 }
