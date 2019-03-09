@@ -1,6 +1,6 @@
 {
   "name": "named-web-colors",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utility to translate HEX color codes into more human friendly color names",
   "main": "lib/index.js",
   "scripts": {
@@ -33,6 +33,7 @@
     "watch": "^1.0.2"
   },
   "dependencies": {
-    "color-string": "^1.5.3"
+    "color-string": "^1.5.3",
+    "lodash": "^4.17.11"
   }
 }
