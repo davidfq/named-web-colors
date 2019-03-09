@@ -7,7 +7,9 @@ Utility to translate HEX color codes into more human friendly color names. It us
 ```javascript
 import getColorName from 'named-web-colors'
 getColorName('#663399') // rebeccapurple
-getColorName('#3A2010') // Sambuca
+getColorName('#FFB97B') // Macaroni and Cheese
+// web safe option
+getColorName('#FFB97B', true), // 'macaroni-and-cheese'
 ```
 
 ## Refs

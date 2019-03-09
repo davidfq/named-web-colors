@@ -1,6 +1,6 @@
 {
   "name": "named-web-colors",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Utility to translate HEX color codes into more human friendly color names",
   "main": "lib/index.js",
   "scripts": {
