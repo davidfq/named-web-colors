@@ -12,5 +12,6 @@ getColorName('#3A2010') // Sambuca
 
 ## Refs
 - [CSS4 named colors](https://drafts.csswg.org/css-color/#named-colors)
+- [CSS variables syntax](https://www.w3.org/TR/css-variables/#syntax)
 - [Color string](https://github.com/Qix-/color-string)
 - [Color difference](https://en.wikipedia.org/wiki/Color_difference)

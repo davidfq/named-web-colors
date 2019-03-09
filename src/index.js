@@ -25,7 +25,23 @@ const white = colorString.get('#fff')
 const black = colorString.get('#000')
 const MAX_DISTANCE = euclideanDistance(white.value, black.value)
 
-export default function getColorName (colorCode) {
+/**
+ * Super basic impl, it's only expected to work with strings coming from `colorList`
+ * @param {string} string
+ * @return {string}
+ */
+const slugify = (string = '', separator = '-') => {
+  return _.reduce(string.split(''), (memo, char) => {
+    return memo + char.replace(/'/, '').replace(/\s/, separator)
+  }, '').toLocaleLowerCase()
+}
+/**
+ * Main function exported
+ * @param {string} colorCode Code representing the color to translate to
+ * @param {boolean} slug Whether to "slugify" the result or not
+ * @return {string}
+ */
+export default function getColorName (colorCode, slug = false) {
   const inputColor = colorString.get(colorCode)
   let distance = MAX_DISTANCE
   let colorMatch = {}
@@ -56,5 +72,6 @@ export default function getColorName (colorCode) {
     })
   }
 
-  return colorMatch.name || ''
+  const colorName = colorMatch.name || ''
+  return slug ? slugify(colorName) : colorName
 }

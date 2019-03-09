@@ -21,3 +21,8 @@ test('Exact matches vs. variations', t => {
 test('not only HEX supported', t => {
   t.is(getColorName('rgb(13,17,23)'), 'Bunker')
 })
+
+test('web safe option (slug style output)', t => {
+  t.is(getColorName('#FFB97B', true), 'macaroni-and-cheese')
+  t.is(getColorName('#66FF66', true), 'screamin-green')
+})
