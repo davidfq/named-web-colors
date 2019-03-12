@@ -10,10 +10,14 @@ const colorList = _.map(colors, (value, key) => {
     rgb: color.value
   }
 })
-
+/**
+ * @param {Array} color1
+ * @param {Array} color2
+ * @return {number}
+ */
 const euclideanDistance = (color1, color2) => {
   // square root of sum of the squares of the differences in values
-  // [red, green, blue]
+  // [red, green, blue, opacity]
   return Math.sqrt(
     Math.pow(color1[0] - color2[0], 2) +
     Math.pow(color1[1] - color2[1], 2) +
@@ -35,13 +39,31 @@ const slugify = (string = '', separator = '-') => {
     return memo + char.replace(/'/, '').replace(/\s/, separator)
   }, '').toLocaleLowerCase()
 }
+
+/**
+ * Combines "color" with solid white, it tries to get a new solid color when
+ * "color" has some transparency value `color[3] < 1`
+ * ref: https://en.wikipedia.org/wiki/Transparency_%28graphic%29
+ * @param {Array} color - [red, green, blue, alpha]
+ * @return {Array} - [red, green, blue, alpha=1]
+ */
+const combineWithWhite = (color) => {
+  const opacity = color[3]
+  return [
+    ((1 - opacity) * white.value[0]) + (opacity * color[0]),
+    ((1 - opacity) * white.value[1]) + (opacity * color[1]),
+    ((1 - opacity) * white.value[2]) + (opacity * color[2]),
+    1
+  ]
+}
+
 /**
  * Main function exported
  * @param {string} colorCode Code representing the color to translate to
  * @param {boolean} slug Whether to "slugify" the result or not
  * @return {string}
  */
-export default function getColorName (colorCode, slug = false) {
+export default function getColorName (colorCode, slug = false, opaque = true) {
   const inputColor = colorString.get(colorCode)
   let distance = MAX_DISTANCE
   let colorMatch = {}
@@ -63,6 +85,12 @@ export default function getColorName (colorCode, slug = false) {
 
   // let's find the closest one
   if (_.isEmpty(colorMatch) && !_.isNull(inputColor)) {
+    // is it transparent? [r, g, b, a]
+    const alpha = inputColor.value[3]
+    if (alpha < 1 && opaque) {
+      inputColor.value = combineWithWhite(inputColor.value)
+    }
+
     _.each(colorList, (color) => {
       const tmpDistance = euclideanDistance(inputColor.value, color.rgb)
       if (tmpDistance < distance) {

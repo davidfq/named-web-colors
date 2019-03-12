@@ -26,3 +26,10 @@ test('web safe option (slug style output)', t => {
   t.is(getColorName('#FFB97B', true), 'macaroni-and-cheese')
   t.is(getColorName('#66FF66', true), 'screamin-green')
 })
+
+test('HEX opacity', t => {
+  t.is(getColorName('#004162FF', true), 'astronaut-blue') // fully opaque
+  t.is(getColorName('#00416280', true), 'bali-hai') // 50% - 80 alpha
+  t.is(getColorName('#0041621A', true), 'mystic') // 10% - 1A alpha
+  t.is(getColorName('#00416280', true, false), 'astronaut-blue') // ignore alpha
+})
