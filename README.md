@@ -11,13 +11,14 @@ getColorName('#663399') // rebeccapurple
 getColorName('#FFB97B') // Macaroni and Cheese
 
 // web safe option
-getColorName('#FFB97B', true), // 'macaroni-and-cheese'
+getColorName('#FFB97B', true) // 'macaroni-and-cheese'
 
 // for colors with alpha channel, it always tries to get the closest
 // solid color mixing the input one with white as background
-getColorName('#0041621A', true), 'mystic') // 10% - 1A alpha
-// mixing default option can be disabled (i.e. alpha channel ignored)
-getColorName('#0041621A', true, false), 'astronaut-blue')
+getColorName('#0041621A', true) // 'mystic'
+
+// mixing default option can be disabled (alpha channel ignored)
+getColorName('#0041621A', true, false) // 'astronaut-blue'
 ```
 
 ## Refs
