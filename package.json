@@ -1,12 +1,12 @@
 {
   "name": "named-web-colors",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "Utility to translate HEX color codes into more human friendly color names",
   "main": "lib/index.js",
   "scripts": {
     "test": "ava lib/test.js",
     "dev": "watch 'npm run build' src",
-    "build": "standard && babel src -d lib" 
+    "build": "standard && babel src -d lib"
   },
   "repository": {
     "type": "git",
