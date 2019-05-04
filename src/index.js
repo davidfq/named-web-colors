@@ -25,6 +25,22 @@ const euclideanDistance = (color1, color2) => {
   )
 }
 
+// https://www.compuphase.com/cmetric.htm
+const alternativeEuclideanDistance = (c1, c2) => {
+  const r1 = c1[0]
+  const r2 = c2[0]
+  const rsum = (r1 + r2) / 2
+  const rd = r1 - r2 // C1,r - C2,r
+  const gd = c1[1] - c2[1] // C1,g - C2,g
+  const bd = c1[2] - c2[2] // C1,b - C2,b
+
+  return Math.sqrt(
+    (2 + (rsum / 256)) * Math.pow(rd, 2) +
+    4 * Math.pow(gd, 2) +
+    (2 + ((255 - rsum) / 256)) * Math.pow(bd, 2)
+  )
+}
+
 const white = colorString.get('#fff')
 const black = colorString.get('#000')
 const MAX_DISTANCE = euclideanDistance(white.value, black.value)
@@ -65,7 +81,7 @@ const combineWithWhite = (color) => {
  * @param {boolean} opaque Whether to combine input color with white background
  * @return {string}
  */
-export default function getColorName (colorCode, slug = false, opaque = true) {
+export default function getColorName (colorCode, slug = false, opaque = true, alternative = false) {
   const inputColor = colorString.get(colorCode)
   let distance = MAX_DISTANCE
   let colorMatch = {}
@@ -96,7 +112,12 @@ export default function getColorName (colorCode, slug = false, opaque = true) {
     }
 
     colorList.forEach((color) => {
-      const tmpDistance = euclideanDistance(inputColor.value, color.rgb)
+      let tmpDistance
+      if (alternative) {
+        tmpDistance = euclideanDistance(inputColor.value, color.rgb)
+      } else {
+        tmpDistance = alternativeEuclideanDistance(inputColor.value, color.rgb)
+      }
       if (tmpDistance < distance) {
         distance = tmpDistance
         colorMatch = color
