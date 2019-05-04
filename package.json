@@ -6,9 +6,9 @@
   "scripts": {
     "test": "ava test/index.js",
     "lint": "standard 'src/*.js'",
-    "check": "npm run lint && webpack --env dev && npm run test",
+    "check": "npm run lint && webpack --mode development && npm run test",
     "dev": "watch 'npm run check' src",
-    "build": "webpack"
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
