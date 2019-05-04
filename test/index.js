@@ -1,5 +1,5 @@
 import test from 'ava'
-import getColorName from './index'
+import getColorName from '../lib/named-web-colors'
 
 test('it doesn\'t break because of parsing errors', t => {
   t.is(getColorName('#'), '')
