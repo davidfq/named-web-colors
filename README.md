@@ -46,3 +46,4 @@ getColorName('#0041621A', true, false) // 'astronaut-blue'
 - [CSS variables syntax](https://www.w3.org/TR/css-variables/#syntax)
 - [Color string](https://github.com/Qix-/color-string)
 - [Color difference](https://en.wikipedia.org/wiki/Color_difference)
+- [Color difference algorithms for D3](https://github.com/Evercoder/d3-color-difference)
