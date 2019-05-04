@@ -2,7 +2,27 @@
 
 Heavily inspired by [Name that color JavaScript](http://chir.ag/projects/ntc/).
 
-Utility to translate HEX color codes into more human friendly color names. It uses a simple Euclidean distance algorithm to find the closest color among approximately 1,567 references (CSS4 web colors included).
+Javascript utility to translate HEX color codes into more human friendly color names. It uses a simple Euclidean distance algorithm to find the closest color among approximately 1,567 references (CSS4 web colors included).
+
+## Install & usage
+With [npm](http://npmjs.org/):
+
+```console
+$ npm install color-string
+```
+
+It's built using the UMD pattern, only one function is exported and it can be used as follows:
+
+```javascript
+// as ES2015 module
+import namedWebColors from 'named-web-colors'
+
+// as CommonJS module
+const namedWebColors = require('../lib/named-web-colors.js')
+
+// in the browser
+<script src="../lib/named-web-colors.js"></script>
+```
 
 ```javascript
 import getColorName from 'named-web-colors'
@@ -17,7 +37,7 @@ getColorName('#FFB97B', true) // 'macaroni-and-cheese'
 // solid color mixing the input one with white as background
 getColorName('#0041621A', true) // 'mystic'
 
-// mixing default option can be disabled (alpha channel ignored)
+// white color as background option can be disabled (alpha channel ignored)
 getColorName('#0041621A', true, false) // 'astronaut-blue'
 ```
 
