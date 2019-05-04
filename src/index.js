@@ -1,15 +1,15 @@
-import _ from 'lodash'
 import colorString from 'color-string'
 import colors from './colors'
 
-const colorList = _.map(colors, (value, key) => {
+const colorList = Object.keys(colors).map((key) => {
   const color = colorString.get(`#${key}`)
   return {
     hex: key,
-    name: value,
+    name: colors[key],
     rgb: color.value
   }
 })
+
 /**
  * @param {Array} color1
  * @param {Array} color2
@@ -35,7 +35,8 @@ const MAX_DISTANCE = euclideanDistance(white.value, black.value)
  * @return {string}
  */
 const slugify = (string = '', separator = '-') => {
-  return _.reduce(string.trim().split(''), (memo, char) => {
+  const chars = string.trim().split('')
+  return chars.reduce((memo, char) => {
     return memo + char.replace(/'/, '').replace(/\s/, separator)
   }, '').toLocaleLowerCase()
 }
@@ -69,9 +70,9 @@ export default function getColorName (colorCode, slug = false, opaque = true) {
   let colorMatch = {}
 
   // is it a web color?
-  if (!_.isNull(inputColor)) {
+  if (inputColor !== null) {
     const webColor = colorString.to.keyword(inputColor.value)
-    if (!_.isUndefined(webColor)) {
+    if (webColor !== undefined) {
       colorMatch = {
         name: webColor
       }
@@ -79,19 +80,21 @@ export default function getColorName (colorCode, slug = false, opaque = true) {
   }
 
   // is it an exact match?
-  if (_.isEmpty(colorMatch) && !_.isNull(inputColor)) {
-    colorMatch = _.find(colorList, _.matchesProperty('rgb', inputColor.value))
+  if (colorMatch.name === undefined && inputColor !== null) {
+    colorMatch = colorList.find((color) => {
+      return color.rgb === inputColor.value
+    }) || {}
   }
 
   // let's find the closest one
-  if (_.isEmpty(colorMatch) && !_.isNull(inputColor)) {
+  if (colorMatch.name === undefined && inputColor !== null) {
     // is it transparent? [r, g, b, a]
     const alpha = inputColor.value[3]
     if (alpha < 1 && opaque) {
       inputColor.value = combineWithWhite(inputColor.value)
     }
 
-    _.each(colorList, (color) => {
+    colorList.forEach((color) => {
       const tmpDistance = euclideanDistance(inputColor.value, color.rgb)
       if (tmpDistance < distance) {
         distance = tmpDistance
