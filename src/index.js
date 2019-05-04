@@ -62,6 +62,7 @@ const combineWithWhite = (color) => {
  * Main function exported
  * @param {string} colorCode Code representing the color to translate to
  * @param {boolean} slug Whether to "slugify" the result or not
+ * @param {boolean} opaque Whether to combine input color with white background
  * @return {string}
  */
 export default function getColorName (colorCode, slug = false, opaque = true) {
