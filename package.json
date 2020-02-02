@@ -5,7 +5,7 @@
   "main": "lib/named-web-colors.js",
   "module": "lib/named-web-colors.js",
   "scripts": {
-    "test": "babel test -d lib && ava lib/test.js",
+    "test": "babel test -d lib && ava lib/index.js",
     "lint": "standard 'src/*.js'",
     "dev": "watch 'npm run build:dev' src",
     "build": "npm run lint && webpack --mode=production && npm run test",
