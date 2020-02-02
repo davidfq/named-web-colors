@@ -32,7 +32,7 @@ import getColorName from 'named-web-colors'
 
 getColorName('#0D1117').name, // 'Bunker'
 getColorName('#0D1117').distance // 0, it's an exact match
-getColorName('#0D1117').css // --color-bunker: '#0D1117'   
+getColorName('#0D1117').css // '--color-bunker: #0D1117'   
 
 // small variation which also matches the "Bunker" color
 getColorName('#0D1118').name // 'Bunker' 
