@@ -3,12 +3,14 @@
   "version": "1.3.0",
   "description": "Utility to translate HEX color codes into more human friendly color names",
   "main": "lib/named-web-colors.js",
+  "module": "lib/named-web-colors.js",
   "scripts": {
-    "test": "ava test/index.js",
+    "test": "babel test -d lib && ava lib/test.js",
     "lint": "standard 'src/*.js'",
-    "check": "npm run lint && webpack --mode development && npm run test",
-    "dev": "watch 'npm run check' src",
-    "build": "webpack --mode production"
+    "dev": "watch 'npm run build:dev' src",
+    "build": "npm run lint && webpack --mode=production && npm run test",
+    "build:dev": "npm run lint && webpack --mode=development && npm run test",
+    "build:colors": "node tools/create-color-list"
   },
   "repository": {
     "type": "git",
@@ -28,10 +30,13 @@
   "homepage": "https://github.com/davidfq/named-web-colors",
   "devDependencies": {
     "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.3.4",
     "ava": "^1.3.1",
+    "babel-loader": "^8.0.6",
     "babel-minify": "^0.5.0",
+    "csvtojson": "^2.0.10",
+    "lodash": "^4.17.15",
     "standard": "^12.0.1",
     "watch": "^1.0.2",
     "webpack": "^4.30.0",
