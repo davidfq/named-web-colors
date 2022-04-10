@@ -118,7 +118,8 @@ const compareRGB = (color1, color2, ignoreAlphaChannel = false) => {
  * @return {ColorOutput}
  */
 const buildColorOutput = (name, hex, colorInput, distance, ignoreAlphaChannel) => {
-  const alpha = colorInput.value[3]
+  const alpha = Number(colorInput.value[3]).toFixed(2)
+  const slug = slugify(name)
   let result = {
     name: name,
     distance: distance
@@ -126,21 +127,27 @@ const buildColorOutput = (name, hex, colorInput, distance, ignoreAlphaChannel) =
 
   if (ignoreAlphaChannel) {
     result.hex = `#${hex}`
-    result.css = `--color-${slugify(name)}: ${result.hex}`
+    result.css = `--color-${slug}: ${result.hex}`
   } else {
-    // use HEX code from input directly as any of the curated colors
-    // don't have alpha channel defined
+    // use HEX code from input directly as none of the curated colors have
+    // alpha channel defined; test
     result.hex = colorString.to.hex(colorInput.value)
-    result.css = (alpha < 1)
-      ? `--color-${slugify(name)}-${(alpha * 100)}: ${result.hex}`
-      : `--color-${slugify(name)}: ${result.hex}`
+    // normalize alpha suffix
+    let alphaSuffix = ''
+    if (alpha > 0 && alpha < 1) {
+      alphaSuffix = `-${Math.round(alpha * 100)}`
+    }
+    result.css = `--color-${slug}${alphaSuffix}: ${result.hex}`
   }
 
   // double check final result; `color-string` don't support HSL input
   // transforms to HEX (when input contains decimals, @see tests),
   // so `result.hex` may not be valid at this point
   if (colorString.get(result.hex) !== null) {
-    result.rgb = colorString.to.rgb(colorString.get(result.hex).value)
+    const rgb = colorString.get(result.hex).value
+    // round alpha value
+    const rgbAlpha = Number.parseFloat(Number(rgb[3]).toFixed(2))
+    result.rgb = colorString.to.rgb([rgb[0], rgb[1], rgb[2], rgbAlpha])
   } else {
     result = undefined
   }
