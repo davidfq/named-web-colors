@@ -24,7 +24,7 @@ test('not only HEX supported', t => {
   t.is(getColorName('rgba(13, 17, 23, 1)').name, 'Bunker')
   t.is(getColorName('rgb(13, 17, 23)').name, 'Bunker')
   t.is(getColorName('hsl(216, 27%, 7%)').name, 'Thunderbird')
-  t.is(getColorName('hsl(216, 27.8%, 7.1%)'), undefined)
+  t.is(getColorName('hsl(216, 27%, 7%, .1)').name, 'Thunderbird')
 })
 
 test('HEX opacity', t => {
