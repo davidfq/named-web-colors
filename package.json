@@ -7,7 +7,7 @@
   "scripts": {
     "test": "babel test -d lib && ava lib/index.js",
     "lint": "standard 'src/*.js'",
-    "build": "npm run lint && webpack --mode=production && npm run test",
+    "build": "webpack --mode=production",
     "build:dev": "npm run lint && webpack --mode=development && npm run test",
     "build:colors": "node tools/create-color-list"
   },
