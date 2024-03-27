@@ -1,13 +1,11 @@
 # Table of contents
 
 * [Documentation example](README.md)
-* [Page 1](page-1.md)
 
-## Group 1
+## Psoxy
 
-* [Page 2](group-1/page-2/README.md)
-  * [Subpage - 3](group-1/page-2/subpage-3.md)
-
-## Group 1
-
-* [Page 3](group-1-1/page-3.md)
+* [Getting started](psoxy/getting-started.md)
+* [Data Sources](psoxy/data-sources/README.md)
+  * [Google ](psoxy/data-sources/google/README.md)
+    * [Google Chat](psoxy/data-sources/google/google-chat.md)
+    * [Google Calendar](psoxy/data-sources/google/google-calendar.md)
